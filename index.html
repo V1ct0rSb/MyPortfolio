@@ -42,13 +42,11 @@
         transition: background-color 0.3s ease, color 0.3s ease,
           transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
       }
-      /* Estilo para o botão de idioma e link de navegação ativos */
-      .lang-btn.active,
+      /* Estilo para o link de navegação ativo */
       .nav-link.active {
         color: #3b82f6; /* Tailwind's blue-500 */
         font-weight: 600;
       }
-      .dark .lang-btn.active,
       .dark .nav-link.active {
         color: #60a5fa; /* Tailwind's blue-400 */
       }
@@ -117,27 +115,26 @@
           ></div>
 
           <!-- Seletor de Idioma -->
-          <div class="flex items-center space-x-2 text-sm">
+          <div
+            class="flex items-center bg-gray-200 dark:bg-slate-700 p-1 rounded-full text-sm font-semibold"
+          >
             <button
               id="lang-pt"
               title="Mudar para Português"
               aria-label="Mudar para Português"
               data-lang-title-key="langPtTitle"
               data-lang-aria-key="langPtAriaLabel"
-              class="lang-btn p-1 rounded-md text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
             >
-              PT
+              🇧🇷 PT
             </button>
-            <span class="text-gray-300 dark:text-gray-600">|</span>
             <button
               id="lang-en"
               title="Mudar para Inglês"
               aria-label="Mudar para Inglês"
               data-lang-title-key="langEnTitle"
               data-lang-aria-key="langEnAriaLabel"
-              class="lang-btn p-1 rounded-md text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
             >
-              EN
+              🇺🇸 EN
             </button>
           </div>
 
@@ -194,25 +191,25 @@
         <a
           href="#about"
           data-lang-key="navAbout"
-          class="nav-link block text-center py-3 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300"
+          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300 border-b border-gray-200 dark:border-slate-700"
           >Sobre</a
         >
         <a
           href="#projects"
           data-lang-key="navProjects"
-          class="nav-link block text-center py-3 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300"
+          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300 border-b border-gray-200 dark:border-slate-700"
           >Projetos</a
         >
         <a
           href="#skills"
           data-lang-key="navSkills"
-          class="nav-link block text-center py-3 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300"
+          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300 border-b border-gray-200 dark:border-slate-700"
           >Skills</a
         >
         <a
           href="#contact"
           data-lang-key="navContact"
-          class="nav-link block text-center py-3 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300"
+          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300"
           >Contato</a
         >
       </div>
@@ -223,15 +220,15 @@
       <!-- SEÇÃO HERO (INÍCIO) -->
       <section
         id="home"
-        class="min-h-screen flex items-center bg-white dark:bg-slate-900 pt-24 pb-12 md:pt-20"
+        class="min-h-screen flex items-center bg-white dark:bg-slate-900 pt-24 pb-12"
       >
         <div
-          class="container mx-auto px-4 sm:px-6 flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-8"
+          class="container mx-auto px-4 sm:px-6 flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-8"
         >
           <div class="lg:w-1/2 text-center lg:text-left">
             <h1
               data-lang-key="heroTitle"
-              class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+              class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
             >
               Olá, eu sou Victor Barreto
             </h1>
@@ -250,13 +247,23 @@
               >Veja meus projetos</a
             >
           </div>
-          <div class="lg:w-1/3 flex-shrink-0">
-            <img
-              src="https://avatars.githubusercontent.com/u/112266976?v=4"
-              alt="Foto de perfil de Victor Barreto"
-              data-lang-alt-key="profileAlt"
-              class="w-64 h-64 sm:w-80 sm:h-80 rounded-full shadow-2xl mx-auto"
-            />
+          <!-- Container da Imagem Responsivo -->
+          <div class="w-full max-w-xs sm:max-w-sm lg:w-2/5 flex justify-center">
+            <!-- Foto de Perfil com Borda Gradiente -->
+            <div
+              class="p-1 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 shadow-2xl dark:shadow-blue-500/30 transform hover:scale-105 transition-transform duration-300 w-full"
+            >
+              <div
+                class="p-1 bg-gray-100 dark:bg-slate-900 rounded-full w-full h-full"
+              >
+                <img
+                  src="https://avatars.githubusercontent.com/u/112266976?v=4"
+                  alt="Foto de perfil de Victor Barreto"
+                  data-lang-alt-key="profileAlt"
+                  class="w-full h-full rounded-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -299,10 +306,10 @@
                   class="fas fa-code-branch text-blue-500 mt-1 mr-4 flex-shrink-0"
                 ></i>
                 <span data-lang-key="aboutPoint3"
-                  >Com um forte interesse em desenvolvimento
-                  <strong>Fullstack</strong>, busco ativamente oportunidades
-                  para integrar minhas habilidades de backend com a criação de
-                  interfaces de usuário responsivas e modernas.</span
+                  >Desenvolvo projetos <strong>Fullstack</strong>, integrando um
+                  backend robusto em Java com interfaces de usuário responsivas
+                  e modernas, criando experiências de usuário eficientes e
+                  coesas.</span
                 >
               </li>
               <li class="flex items-start">
@@ -310,9 +317,10 @@
                   class="fas fa-briefcase text-blue-500 mt-1 mr-4 flex-shrink-0"
                 ></i>
                 <span data-lang-key="aboutPoint4"
-                  >Disponível para colaborar em projetos desafiadores e
-                  contribuir com soluções de alto impacto para equipes de
-                  tecnologia.</span
+                  >Meu foco é entregar
+                  <strong>código limpo e bem documentado</strong>, otimizando a
+                  performance de sistemas e garantindo a escalabilidade de
+                  aplicações em ambientes de produção.</span
                 >
               </li>
             </ul>
@@ -335,7 +343,7 @@
               class="bg-gray-100 dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl"
             >
               <img
-                src="assets/01.png"
+                src="https://placehold.co/600x400/3b82f6/ffffff?text=DevStart"
                 alt="Imagem de pré-visualização do Projeto DevStart"
                 data-lang-alt-key="project1Alt"
                 class="w-full h-48 object-cover"
@@ -371,7 +379,7 @@
               class="bg-gray-100 dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl"
             >
               <img
-                src="assets/02.png"
+                src="https://placehold.co/600x400/10b981/ffffff?text=LinkHub+API"
                 alt="Imagem de pré-visualização do Projeto LinkHub API"
                 data-lang-alt-key="project2Alt"
                 class="w-full h-48 object-cover"
@@ -406,7 +414,7 @@
               class="bg-gray-100 dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl"
             >
               <img
-                src="assets/03.png"
+                src="https://placehold.co/600x400/8b5cf6/ffffff?text=ToDo+List"
                 alt="Imagem de pré-visualização do Projeto ToDo List"
                 data-lang-alt-key="project3Alt"
                 class="w-full h-48 object-cover"
@@ -519,12 +527,13 @@
             data-lang-key="contactSubtitle"
             class="text-gray-300 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
           >
-            Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à
-            vontade para entrar em contato.
+            Interessado em discutir um projeto ou uma colaboração técnica? Envie
+            um e-mail ou me encontre nas redes abaixo para iniciarmos uma
+            conversa.
           </p>
 
           <a
-            href="mailto:denvictor.sbarreto@gmail.com"
+            href="mailto:victor.barreto.dev@exemplo.com"
             class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 dark:hover:bg-blue-500 transform hover:scale-105 inline-block mb-10"
           >
             <i class="fas fa-envelope mr-2"></i>
@@ -618,9 +627,9 @@
             aboutPoint2:
               "Focado em construir e otimizar aplicações de alta performance, aplicando princípios de <strong>código limpo e arquitetura sólida</strong>.",
             aboutPoint3:
-              "Com um forte interesse em desenvolvimento <strong>Fullstack</strong>, busco ativamente oportunidades para integrar minhas habilidades de backend com a criação de interfaces de usuário responsivas e modernas.",
+              "Desenvolvo projetos <strong>Fullstack</strong>, integrando um backend robusto em Java com interfaces de usuário responsivas e modernas, criando experiências de usuário eficientes e coesas.",
             aboutPoint4:
-              "Disponível para colaborar em projetos desafiadores e contribuir com soluções de alto impacto para equipes de tecnologia.",
+              "Meu foco é entregar <strong>código limpo e bem documentado</strong>, otimizando a performance de sistemas e garantindo a escalabilidade de aplicações em ambientes de produção.",
             // Seção Projetos
             projectsTitle: "Meus Projetos",
             project1Title: "DevStart",
@@ -642,7 +651,7 @@
             // Seção Contato
             contactTitle: "Vamos Conversar?",
             contactSubtitle:
-              "Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à vontade para entrar em contato.",
+              "Interessado em discutir um projeto ou uma colaboração técnica? Envie um e-mail ou me encontre nas redes abaixo para iniciarmos uma conversa.",
             contactButton: "Enviar um Email",
             // Rodapé e Voltar ao Topo
             footerRights: "Todos os direitos reservados.",
@@ -679,9 +688,9 @@
             aboutPoint2:
               "Focused on building and optimizing high-performance applications, applying principles of <strong>clean code and solid architecture</strong>.",
             aboutPoint3:
-              "With a strong interest in <strong>Fullstack</strong> development, I actively seek opportunities to integrate my backend skills with the creation of responsive and modern user interfaces.",
+              "I develop <strong>Fullstack</strong> projects, integrating a robust Java backend with responsive and modern user interfaces, creating efficient and cohesive user experiences.",
             aboutPoint4:
-              "Available to collaborate on challenging projects and contribute high-impact solutions to technology teams.",
+              "My focus is on delivering <strong>clean and well-documented code</strong>, optimizing system performance and ensuring the scalability of applications in production environments.",
             // Projects Section
             projectsTitle: "My Projects",
             project1Title: "DevStart",
@@ -703,7 +712,7 @@
             // Contact Section
             contactTitle: "Let's Talk?",
             contactSubtitle:
-              "I am always open to new opportunities and collaborations. Feel free to get in touch.",
+              "Interested in discussing a project or a technical collaboration? Send an email or find me on the networks below to start a conversation.",
             contactButton: "Send an Email",
             // Footer and Back to Top
             footerRights: "All rights reserved.",
@@ -712,23 +721,15 @@
         };
 
         const setLanguage = (language) => {
-          // Garante que o idioma seja 'pt' ou 'en'
           const lang = translations[language] ? language : "pt";
-
-          // Atualiza o atributo lang da tag <html>
           document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
-
           const currentTranslations = translations[lang];
 
-          // Atualiza o título da página
           document.title = currentTranslations.pageTitle;
-
-          // Atualiza a meta description
           document
             .querySelector('meta[name="description"]')
             .setAttribute("content", currentTranslations.metaDescription);
 
-          // Atualiza textos (innerHTML)
           document.querySelectorAll("[data-lang-key]").forEach((element) => {
             const key = element.getAttribute("data-lang-key");
             if (currentTranslations[key]) {
@@ -736,7 +737,6 @@
             }
           });
 
-          // Atualiza atributos 'title'
           document
             .querySelectorAll("[data-lang-title-key]")
             .forEach((element) => {
@@ -746,7 +746,6 @@
               }
             });
 
-          // Atualiza atributos 'aria-label'
           document
             .querySelectorAll("[data-lang-aria-key]")
             .forEach((element) => {
@@ -756,7 +755,6 @@
               }
             });
 
-          // Atualiza atributos 'alt'
           document
             .querySelectorAll("[data-lang-alt-key]")
             .forEach((element) => {
@@ -766,14 +764,25 @@
               }
             });
 
-          // Salva a preferência de idioma e atualiza o estilo do botão
           localStorage.setItem("language", lang);
-          document
-            .getElementById("lang-pt")
-            .classList.toggle("active", lang === "pt");
-          document
-            .getElementById("lang-en")
-            .classList.toggle("active", lang === "en");
+
+          // Lógica de Estilo para Botões de Idioma
+          const langPtButton = document.getElementById("lang-pt");
+          const langEnButton = document.getElementById("lang-en");
+          const baseClasses =
+            "lang-btn px-3 py-1 rounded-full flex items-center gap-2 transition-all duration-300";
+          const activeClasses =
+            "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm";
+          const inactiveClasses =
+            "bg-transparent text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400";
+
+          if (lang === "pt") {
+            langPtButton.className = `${baseClasses} ${activeClasses}`;
+            langEnButton.className = `${baseClasses} ${inactiveClasses}`;
+          } else {
+            langEnButton.className = `${baseClasses} ${activeClasses}`;
+            langPtButton.className = `${baseClasses} ${inactiveClasses}`;
+          }
         };
 
         const langPtButton = document.getElementById("lang-pt");
@@ -781,7 +790,6 @@
         langPtButton.addEventListener("click", () => setLanguage("pt"));
         langEnButton.addEventListener("click", () => setLanguage("en"));
 
-        // Determina o idioma inicial
         const userLang =
           localStorage.getItem("language") || navigator.language.split("-")[0];
         setLanguage(userLang);
@@ -831,6 +839,8 @@
           mobileMenu.classList.toggle("hidden");
           mobileMenuIcon.classList.toggle("fa-bars");
           mobileMenuIcon.classList.toggle("fa-times");
+          // Bloqueia o scroll do body quando o menu está aberto
+          document.body.classList.toggle("overflow-hidden", !isExpanded);
         });
 
         mobileMenu.addEventListener("click", (event) => {
@@ -839,6 +849,8 @@
             mobileMenuButton.setAttribute("aria-expanded", "false");
             mobileMenuIcon.classList.add("fa-bars");
             mobileMenuIcon.classList.remove("fa-times");
+            // Libera o scroll do body ao fechar o menu
+            document.body.classList.remove("overflow-hidden");
           }
         });
 
@@ -869,7 +881,6 @@
 
           navLinks.forEach((link) => link.classList.remove("active"));
 
-          // Lida com múltiplos links (desktop e mobile) para a mesma seção
           const activeLinks = document.querySelectorAll(
             `.nav-link[href="#${sections[index].id}"]`
           );
