@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <!-- O atributo lang será atualizado dinamicamente via JavaScript -->
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- O título também será atualizado dinamicamente -->
-    <title>Victor Barreto - Portfólio Pessoal</title>
+    <title>Victor Barreto - Backend Developer</title>
     <meta
       name="description"
-      content="Portfólio pessoal de Victor Barreto, desenvolvedor de software especializado em backend com Java e Spring Boot."
+      content="Portfólio de Victor Barreto, Desenvolvedor Backend especializado em Java, Spring Boot, SQL e Arquitetura de Software."
       data-lang-meta-key="metaDescription"
     />
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter & JetBrains Mono (para código) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
@@ -27,871 +26,1221 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
     <style>
-      /* Estilo base para a fonte Inter */
+      /* Tipografia */
       body {
         font-family: "Inter", sans-serif;
       }
-      /* Transições suaves de cor e transformações */
-      * {
-        transition: background-color 0.3s ease, color 0.3s ease,
-          transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      .font-code {
+        font-family: "JetBrains Mono", monospace;
       }
-      /* Estilo para o link de navegação ativo */
+
+      /* Transições */
+      * {
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* Scrollbar personalizada */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3b82f6;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2563eb;
+      }
+
+      /* Nav Link Ativo */
+      .nav-link {
+        position: relative;
+      }
       .nav-link.active {
-        color: #3b82f6; /* Tailwind's blue-500 */
+        color: #3b82f6;
         font-weight: 600;
       }
-      .dark .nav-link.active {
-        color: #60a5fa; /* Tailwind's blue-400 */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #3b82f6;
+        transition: width 0.3s ease;
+      }
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Padrão de Fundo para o Tema Claro */
+      .bg-grid-pattern {
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+      .dark .bg-grid-pattern {
+        background-image: none; /* Remove no dark mode para manter o clean dark */
       }
     </style>
+
     <script>
-      // Configuração do Tailwind para modo escuro
       tailwind.config = {
         darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "spring-green": "#6db33f",
+              "java-red": "#e76f00",
+              "docker-blue": "#2496ed",
+            },
+          },
+        },
       };
     </script>
   </head>
   <body
-    class="bg-gray-100 text-gray-800 dark:bg-slate-900 dark:text-gray-200 antialiased"
+    class="bg-slate-50 text-slate-800 dark:bg-[#0f172a] dark:text-slate-300 antialiased transition-colors duration-300"
   >
-    <!-- CABEÇALHO E NAVEGAÇÃO -->
+    <!-- CABEÇALHO -->
     <header
-      role="banner"
-      class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-sm fixed top-0 left-0 right-0 z-50"
+      class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none transition-colors duration-300"
     >
       <div
         class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
       >
         <a
           href="#home"
-          class="text-2xl font-bold text-blue-600 dark:text-blue-500"
-          >VB</a
+          class="text-xl font-bold flex items-center gap-2 group scroll-link"
         >
-
-        <div class="flex items-center space-x-2 sm:space-x-4">
-          <!-- Navegação para Desktop -->
-          <nav
-            role="navigation"
-            aria-label="Navegação Principal"
-            data-lang-aria-key="mainNavAriaLabel"
-            class="hidden md:flex space-x-8"
+          <span
+            class="text-blue-600 font-code group-hover:scale-110 transition-transform inline-block"
+            >&lt;VB/&gt;</span
           >
+        </a>
+
+        <div class="flex items-center gap-6">
+          <!-- Nav Desktop -->
+          <nav class="hidden md:flex gap-8 text-sm font-medium">
             <a
               href="#about"
+              class="nav-link hover:text-blue-600 dark:hover:text-blue-400 scroll-link"
               data-lang-key="navAbout"
-              class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transform hover:scale-110 transition duration-300"
               >Sobre</a
             >
             <a
+              href="#experience"
+              class="nav-link hover:text-blue-600 dark:hover:text-blue-400 scroll-link"
+              data-lang-key="navExp"
+              >Experiência</a
+            >
+            <a
               href="#projects"
+              class="nav-link hover:text-blue-600 dark:hover:text-blue-400 scroll-link"
               data-lang-key="navProjects"
-              class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transform hover:scale-110 transition duration-300"
               >Projetos</a
             >
             <a
               href="#skills"
+              class="nav-link hover:text-blue-600 dark:hover:text-blue-400 scroll-link"
               data-lang-key="navSkills"
-              class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transform hover:scale-110 transition duration-300"
-              >Skills</a
-            >
-            <a
-              href="#contact"
-              data-lang-key="navContact"
-              class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transform hover:scale-110 transition duration-300"
-              >Contato</a
+              >Stack</a
             >
           </nav>
 
-          <!-- Divisor -->
           <div
-            class="hidden md:block w-px h-6 bg-gray-300 dark:bg-gray-600"
+            class="hidden md:block w-px h-5 bg-slate-300 dark:bg-slate-700"
           ></div>
 
-          <!-- Seletor de Idioma -->
-          <div
-            class="flex items-center bg-gray-200 dark:bg-slate-700 p-1 rounded-full text-sm font-semibold"
-          >
-            <button
-              id="lang-pt"
-              title="Mudar para Português"
-              aria-label="Mudar para Português"
-              data-lang-title-key="langPtTitle"
-              data-lang-aria-key="langPtAriaLabel"
+          <!-- Controles -->
+          <div class="flex items-center gap-3">
+            <!-- Idioma -->
+            <div
+              class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700"
             >
-              🇧🇷 PT
+              <button
+                id="lang-pt"
+                class="px-2 py-1 text-xs font-bold rounded hover:bg-white dark:hover:bg-slate-700 shadow-sm transition-all"
+              >
+                PT
+              </button>
+              <button
+                id="lang-en"
+                class="px-2 py-1 text-xs font-bold rounded hover:bg-white dark:hover:bg-slate-700 transition-all text-gray-400"
+              >
+                EN
+              </button>
+            </div>
+
+            <!-- Tema -->
+            <button
+              id="theme-toggle"
+              class="p-2 text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            >
+              <i class="fas fa-moon hidden dark:block"></i>
+              <i class="fas fa-sun block dark:hidden text-orange-500"></i>
             </button>
+
+            <!-- Mobile Menu Button -->
             <button
-              id="lang-en"
-              title="Mudar para Inglês"
-              aria-label="Mudar para Inglês"
-              data-lang-title-key="langEnTitle"
-              data-lang-aria-key="langEnAriaLabel"
+              id="mobile-menu-btn"
+              class="md:hidden p-2 text-slate-600 dark:text-gray-300"
             >
-              🇺🇸 EN
+              <i class="fas fa-bars text-xl"></i>
             </button>
           </div>
-
-          <!-- Botão de Tema -->
-          <button
-            id="theme-toggle"
-            type="button"
-            title="Alternar tema"
-            aria-label="Alternar tema"
-            data-lang-title-key="themeToggleTitle"
-            data-lang-aria-key="themeToggleAriaLabel"
-            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-slate-800 rounded-lg text-sm p-2.5 transform hover:scale-110"
-          >
-            <svg
-              id="theme-toggle-dark-icon"
-              class="hidden w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-              ></path>
-            </svg>
-            <svg
-              id="theme-toggle-light-icon"
-              class="hidden w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 10.607a1 1 0 011.414 0l.707-.707a1 1 0 111.414 1.414l-.707.707a1 1 0 01-1.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-
-          <!-- Botão do Menu Mobile -->
-          <button
-            id="mobile-menu-button"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            class="md:hidden text-2xl text-gray-700 dark:text-gray-300 focus:outline-none"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
         </div>
       </div>
 
-      <!-- Menu Mobile (oculto por padrão) -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-800">
-        <a
-          href="#about"
-          data-lang-key="navAbout"
-          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300 border-b border-gray-200 dark:border-slate-700"
-          >Sobre</a
-        >
-        <a
-          href="#projects"
-          data-lang-key="navProjects"
-          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300 border-b border-gray-200 dark:border-slate-700"
-          >Projetos</a
-        >
-        <a
-          href="#skills"
-          data-lang-key="navSkills"
-          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300 border-b border-gray-200 dark:border-slate-700"
-          >Skills</a
-        >
-        <a
-          href="#contact"
-          data-lang-key="navContact"
-          class="nav-link block text-center py-4 px-6 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition duration-300"
-          >Contato</a
-        >
+      <!-- Menu Mobile -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 absolute w-full shadow-lg"
+      >
+        <div class="flex flex-col p-4 space-y-4">
+          <a
+            href="#about"
+            class="text-sm font-medium hover:text-blue-600 scroll-link"
+            data-lang-key="navAbout"
+            >Sobre</a
+          >
+          <a
+            href="#experience"
+            class="text-sm font-medium hover:text-blue-600 scroll-link"
+            data-lang-key="navExp"
+            >Experiência</a
+          >
+          <a
+            href="#projects"
+            class="text-sm font-medium hover:text-blue-600 scroll-link"
+            data-lang-key="navProjects"
+            >Projetos</a
+          >
+          <a
+            href="#skills"
+            class="text-sm font-medium hover:text-blue-600 scroll-link"
+            data-lang-key="navSkills"
+            >Stack</a
+          >
+        </div>
       </div>
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main role="main">
-      <!-- SEÇÃO HERO (INÍCIO) -->
+    <main>
+      <!-- HERO SECTION -->
       <section
         id="home"
-        class="min-h-screen flex items-center bg-white dark:bg-slate-900 pt-24 pb-12"
+        class="min-h-screen flex items-center pt-20 relative overflow-hidden bg-grid-pattern"
       >
+        <!-- Background decoration (Gradients) -->
         <div
-          class="container mx-auto px-4 sm:px-6 flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-8"
+          class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-[100px] -z-10"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-400/20 dark:bg-purple-500/10 rounded-full blur-[100px] -z-10"
+        ></div>
+
+        <div
+          class="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center"
         >
-          <div class="lg:w-1/2 text-center lg:text-left">
-            <h1
-              data-lang-key="heroTitle"
-              class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+          <div>
+            <div
+              class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-blue-600 uppercase bg-blue-50 dark:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800 font-code shadow-sm"
             >
-              Olá, eu sou Victor Barreto
+              Backend Developer
+            </div>
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-slate-900 dark:text-white"
+            >
+              Olá, eu sou <br />
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+                >Victor Barreto</span
+              >
             </h1>
             <p
-              data-lang-key="heroSubtitle"
-              class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0"
+              class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-lg"
+              data-lang-key="heroDesc"
             >
-              Desenvolvedor de software focado em criar soluções backend
-              eficientes com Java e Spring Boot, e apaixonado por desenvolver
-              interfaces de usuário intuitivas.
+              Especialista em construir <strong>APIs RESTful robustas</strong> e
+              escaláveis com Java e Spring Boot. Focado em arquitetura limpa,
+              microserviços e soluções de alta performance.
             </p>
-            <a
-              href="#projects"
-              data-lang-key="heroButton"
-              class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600 transform hover:scale-105"
-              >Veja meus projetos</a
-            >
-          </div>
-          <!-- Container da Imagem Responsivo -->
-          <div class="w-full max-w-xs sm:max-w-sm lg:w-2/5 flex justify-center">
-            <!-- Foto de Perfil com Borda Gradiente -->
+
+            <div class="flex flex-wrap gap-4">
+              <!-- Botão Primário Padronizado -->
+              <a
+                href="#projects"
+                class="scroll-link flex items-center justify-center h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40"
+                data-lang-key="heroBtnProjects"
+              >
+                Ver Projetos
+              </a>
+              <!-- Botão Secundário Padronizado -->
+              <a
+                href="https://github.com/V1ct0rSb"
+                target="_blank"
+                class="flex items-center justify-center h-12 gap-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-slate-500 hover:shadow-md font-medium py-3 px-6 rounded-lg transition-all hover:-translate-y-0.5"
+              >
+                <i class="fab fa-github text-lg"></i> GitHub
+              </a>
+              <!-- Botão Secundário Padronizado -->
+              <a
+                href="https://linkedin.com/in/victor-barreto-6a3129258"
+                target="_blank"
+                class="flex items-center justify-center h-12 gap-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md font-medium py-3 px-6 rounded-lg transition-all hover:-translate-y-0.5"
+              >
+                <i class="fab fa-linkedin text-lg text-blue-600"></i> LinkedIn
+              </a>
+            </div>
+
+            <!-- Tech Badges Hero -->
             <div
-              class="p-1 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 shadow-2xl dark:shadow-blue-500/30 transform hover:scale-105 transition-transform duration-300 w-full"
+              class="mt-12 flex flex-wrap items-center gap-6 text-slate-500 dark:text-slate-400 text-sm font-code"
+            >
+              <span class="font-semibold text-slate-700 dark:text-slate-300"
+                >Tech Stack:</span
+              >
+              <div class="flex gap-4">
+                <i
+                  class="fab fa-java text-3xl hover:text-java-red transition-colors cursor-pointer"
+                  title="Java"
+                ></i>
+                <i
+                  class="fas fa-leaf text-3xl hover:text-spring-green transition-colors cursor-pointer"
+                  title="Spring Boot"
+                ></i>
+                <i
+                  class="fab fa-docker text-3xl hover:text-docker-blue transition-colors cursor-pointer"
+                  title="Docker"
+                ></i>
+                <i
+                  class="fas fa-database text-3xl hover:text-slate-600 dark:hover:text-slate-200 transition-colors cursor-pointer"
+                  title="SQL"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex justify-center lg:justify-end">
+            <!-- Code Snippet Visual -->
+            <div
+              class="w-full max-w-md bg-[#1e293b] dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-700 overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500 group"
             >
               <div
-                class="p-1 bg-gray-100 dark:bg-slate-900 rounded-full w-full h-full"
+                class="flex items-center gap-2 px-4 py-3 bg-[#0f172a] dark:bg-slate-800 border-b border-slate-700"
               >
-                <img
-                  src="https://avatars.githubusercontent.com/u/112266976?v=4"
-                  alt="Foto de perfil de Victor Barreto"
-                  data-lang-alt-key="profileAlt"
-                  class="w-full h-full rounded-full object-cover"
-                />
+                <div
+                  class="w-3 h-3 rounded-full bg-red-500 group-hover:bg-red-400 transition-colors"
+                ></div>
+                <div
+                  class="w-3 h-3 rounded-full bg-yellow-500 group-hover:bg-yellow-400 transition-colors"
+                ></div>
+                <div
+                  class="w-3 h-3 rounded-full bg-green-500 group-hover:bg-green-400 transition-colors"
+                ></div>
+                <span class="ml-2 text-xs text-slate-400 font-code"
+                  >TestConfig.java</span
+                >
+              </div>
+              <div class="p-6 text-sm font-code text-slate-300 overflow-x-auto">
+                <pre><code><span class="text-purple-400">@Test</span>
+<span class="text-blue-400">void</span> <span class="text-yellow-300">shouldCreateOrderSuccess</span>() {
+    <span class="text-slate-500">// Given</span>
+    OrderDto dto = <span class="text-blue-400">new</span> OrderDto(...);
+    
+    <span class="text-slate-500">// When</span>
+    var result = service.create(dto);
+
+    <span class="text-slate-500">// Then</span>
+    <span class="text-blue-400">assertNotNull</span>(result.getId());
+    <span class="text-blue-400">assertEquals</span>(<span class="text-orange-400">CREATED</span>, result.getStatus());
+}</code></pre>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO SOBRE MIM -->
-      <section id="about" class="py-20">
+      <!-- SOBRE -->
+      <section id="about" class="py-24 bg-white dark:bg-[#0b1120]">
         <div class="container mx-auto px-4 sm:px-6">
-          <h2
-            data-lang-key="aboutTitle"
-            class="text-3xl sm:text-4xl font-bold text-center mb-12"
-          >
-            Sobre Mim
-          </h2>
+          <div class="max-w-3xl mx-auto text-center mb-12">
+            <h2
+              class="text-3xl font-bold mb-4 text-slate-900 dark:text-white"
+              data-lang-key="aboutTitle"
+            >
+              Sobre Mim
+            </h2>
+            <div class="h-1 w-20 bg-blue-600 mx-auto rounded-full"></div>
+          </div>
+
           <div
-            class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-4xl mx-auto"
+            class="bg-slate-50 dark:bg-slate-800/50 p-8 md:p-10 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
           >
-            <ul class="space-y-4 text-gray-600 dark:text-gray-400">
-              <li class="flex items-start">
-                <i
-                  class="fas fa-rocket text-blue-500 mt-1 mr-4 flex-shrink-0"
-                ></i>
-                <span data-lang-key="aboutPoint1"
-                  >Desenvolvedor de Software com formação em Sistemas de
-                  Informação e especialização em ecossistemas backend com
-                  <strong>Java e Spring Boot</strong>.</span
+            <p
+              class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6"
+              data-lang-key="aboutText1"
+            >
+              Sou um <strong>Desenvolvedor Back-end</strong> apaixonado por
+              resolver problemas complexos através de código limpo e eficiente.
+              Sou <strong>Graduado em Sistemas de Informação</strong> pela Unit
+              (Concluído em 07/2025), tendo focado minha carreira no ecossistema
+              <strong>Java</strong>.
+            </p>
+            <p
+              class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+              data-lang-key="aboutText2"
+            >
+              Minha experiência vai além do código: atuei em projetos reais
+              integrando o polo tecnológico <strong>Porto Digital</strong>, onde
+              desenvolvi soluções para automação fiscal e gestão de eventos.
+              Busco sempre aplicar as melhores práticas como TDD, SOLID e
+              arquitetura de microsserviços.
+            </p>
+
+            <div
+              class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 pt-10 border-t border-slate-200 dark:border-slate-700"
+              id="stats-container"
+            >
+              <div class="text-center">
+                <h3 class="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                  <span class="counter-value" data-target="2">0</span>+
+                </h3>
+                <p
+                  class="text-sm text-slate-500 font-medium uppercase tracking-wide mt-1"
+                  data-lang-key="statYears"
                 >
-              </li>
-              <li class="flex items-start">
-                <i
-                  class="fas fa-cogs text-blue-500 mt-1 mr-4 flex-shrink-0"
-                ></i>
-                <span data-lang-key="aboutPoint2"
-                  >Focado em construir e otimizar aplicações de alta
-                  performance, aplicando princípios de
-                  <strong>código limpo e arquitetura sólida</strong>.</span
+                  Anos de Estudo/Prática
+                </p>
+              </div>
+              <div class="text-center">
+                <h3 class="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                  <span class="counter-value" data-target="10">0</span>+
+                </h3>
+                <p
+                  class="text-sm text-slate-500 font-medium uppercase tracking-wide mt-1"
+                  data-lang-key="statProjects"
                 >
-              </li>
-              <li class="flex items-start">
-                <i
-                  class="fas fa-code-branch text-blue-500 mt-1 mr-4 flex-shrink-0"
-                ></i>
-                <span data-lang-key="aboutPoint3"
-                  >Desenvolvo projetos <strong>Fullstack</strong>, integrando um
-                  backend robusto em Java com interfaces de usuário responsivas
-                  e modernas, criando experiências de usuário eficientes e
-                  coesas.</span
+                  Projetos GitHub
+                </p>
+              </div>
+              <div class="text-center">
+                <h3 class="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                  <span class="counter-value" data-target="3">0</span>
+                </h3>
+                <p
+                  class="text-sm text-slate-500 font-medium uppercase tracking-wide mt-1"
+                  data-lang-key="statResidencies"
                 >
-              </li>
-              <li class="flex items-start">
-                <i
-                  class="fas fa-briefcase text-blue-500 mt-1 mr-4 flex-shrink-0"
-                ></i>
-                <span data-lang-key="aboutPoint4"
-                  >Meu foco é entregar
-                  <strong>código limpo e bem documentado</strong>, otimizando a
-                  performance de sistemas e garantindo a escalabilidade de
-                  aplicações em ambientes de produção.</span
-                >
-              </li>
-            </ul>
+                  Residências/Estágios
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO PROJETOS -->
-      <section id="projects" class="py-20 bg-white dark:bg-slate-900">
+      <!-- EXPERIÊNCIA (TIMELINE) -->
+      <section id="experience" class="py-24 bg-slate-50 dark:bg-[#151e32]">
         <div class="container mx-auto px-4 sm:px-6">
           <h2
-            data-lang-key="projectsTitle"
-            class="text-3xl sm:text-4xl font-bold text-center mb-12"
+            class="text-3xl font-bold text-center mb-16 text-slate-900 dark:text-white"
+            data-lang-key="expTitle"
           >
-            Meus Projetos
+            Trajetória Profissional
           </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Projeto 1 -->
+
+          <div class="max-w-3xl mx-auto relative">
+            <!-- Linha vertical -->
             <div
-              class="bg-gray-100 dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl"
-            >
-              <img
-                src="https://placehold.co/600x400/3b82f6/ffffff?text=DevStart"
-                alt="Imagem de pré-visualização do Projeto DevStart"
-                data-lang-alt-key="project1Alt"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-6">
-                <h3
-                  data-lang-key="project1Title"
-                  class="text-xl font-bold mb-2"
-                >
-                  DevStart
+              class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-slate-300 dark:bg-slate-700 h-full"
+            ></div>
+
+            <!-- Item 1: Fabtech -->
+            <div class="relative mb-12 md:flex md:justify-between group">
+              <div class="md:w-5/12 mb-4 md:mb-0 md:text-right order-1 pr-8">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+                  Estágio em Desenvolvimento
                 </h3>
-                <p
-                  data-lang-key="project1Desc"
-                  class="text-gray-600 dark:text-gray-400 mb-4"
-                >
-                  O DevStart é uma plataforma gratuita para iniciantes em
-                  programação. O projeto centraliza recursos de qualidade, como
-                  vídeos, cursos e links, para tornar o aprendizado de
-                  programação mais simples, eficiente e acessível a todos.
+                <h4 class="text-blue-600 font-medium">Fabtech</h4>
+                <p class="text-sm text-slate-500 font-code mt-1">
+                  Mar 2023 - Jan 2025
                 </p>
-                <a
-                  href="https://github.com/V1ct0rSb/projeto-dev-start"
-                  target="_blank"
-                  class="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
-                  ><span data-lang-key="projectLink">Ver no GitHub</span>
-                  <i class="fas fa-arrow-right ml-1"></i
-                ></a>
+              </div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-slate-800 z-10 group-hover:scale-150 transition-transform order-2 shadow-md"
+              ></div>
+              <div class="md:w-5/12 pl-8 md:pl-8 order-3">
+                <p
+                  class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
+                  data-lang-key="expFabtech"
+                >
+                  Desenvolvimento de app híbrido (Ionic + SQLite) com
+                  sincronização online/offline. Atuação Fullstack em portal de
+                  futebol e modernização de interfaces legado.
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Java</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Ionic</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >SQLite</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >SQL/MySQL</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >HTML/CSS</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Git/GitHub</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Figma</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    title="Utilizado para ambiente de desenvolvimento local"
+                    >WAMP</span
+                  >
+                </div>
               </div>
             </div>
 
-            <!-- Projeto 2 -->
-            <div
-              class="bg-gray-100 dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl"
-            >
-              <img
-                src="https://placehold.co/600x400/10b981/ffffff?text=LinkHub+API"
-                alt="Imagem de pré-visualização do Projeto LinkHub API"
-                data-lang-alt-key="project2Alt"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-6">
-                <h3
-                  data-lang-key="project2Title"
-                  class="text-xl font-bold mb-2"
-                >
-                  LinkHub API
+            <!-- Item 2: GrowUp -->
+            <div class="relative mb-12 md:flex md:justify-between group">
+              <div
+                class="md:w-5/12 mb-4 md:mb-0 order-1 md:order-3 pl-8 md:pl-8"
+              >
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+                  Residência de Software II
                 </h3>
-                <p
-                  data-lang-key="project2Desc"
-                  class="text-gray-600 dark:text-gray-400 mb-4"
-                >
-                  Este projeto é o backend de uma aplicação de gerenciamento de
-                  links, permitindo que os usuários salvem, organizem e acessem
-                  seus links da web de forma eficiente, através de uma API
-                  RESTful robusta e bem arquitetada.
+                <h4 class="text-blue-600 font-medium">
+                  GrowUp Porto Digital / Ágape
+                </h4>
+                <p class="text-sm text-slate-500 font-code mt-1">
+                  Ago 2024 - Dez 2024
                 </p>
-                <a
-                  href="https://github.com/V1ct0rSb/LinkHub"
-                  target="_blank"
-                  class="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
-                  ><span data-lang-key="projectLink">Ver no GitHub</span>
-                  <i class="fas fa-arrow-right ml-1"></i
-                ></a>
+              </div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-white dark:border-slate-800 z-10 group-hover:scale-150 transition-transform order-2 shadow-md"
+              ></div>
+              <div
+                class="md:w-5/12 text-left md:text-right pr-8 order-3 md:order-1"
+              >
+                <p
+                  class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
+                  data-lang-key="expGrowUp"
+                >
+                  Desenvolvimento de ChatBot para automação de serviços fiscais.
+                  Integração com Evolution API, geração de PDF e containerização
+                  com Docker.
+                </p>
+                <div
+                  class="mt-3 flex flex-wrap gap-2 justify-start md:justify-end"
+                >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Docker</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >PostgreSQL</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Redis</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Node.js</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >API REST</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Typebot</span
+                  >
+                </div>
               </div>
             </div>
-            <!-- Projeto 3 -->
-            <div
-              class="bg-gray-100 dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl"
-            >
-              <img
-                src="https://placehold.co/600x400/8b5cf6/ffffff?text=ToDo+List"
-                alt="Imagem de pré-visualização do Projeto ToDo List"
-                data-lang-alt-key="project3Alt"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-6">
-                <h3
-                  data-lang-key="project3Title"
-                  class="text-xl font-bold mb-2"
-                >
-                  ToDo List
+
+            <!-- Item 3: RiseUp -->
+            <div class="relative md:flex md:justify-between group">
+              <div class="md:w-5/12 mb-4 md:mb-0 md:text-right order-1 pr-8">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+                  Residência de Software I
                 </h3>
-                <p
-                  data-lang-key="project3Desc"
-                  class="text-gray-600 dark:text-gray-400 mb-4"
-                >
-                  Este é um projeto pessoal de uma API RESTful para
-                  gerenciamento de tarefas (ToDo List), desenvolvido com Spring
-                  Boot. A aplicação permite criar, listar, atualizar e excluir
-                  tarefas, ordenadas por prioridade e nome.
+                <h4 class="text-blue-600 font-medium">RiseUp Porto Digital</h4>
+                <p class="text-sm text-slate-500 font-code mt-1">
+                  Ago 2023 - Dez 2023
                 </p>
-                <a
-                  href="https://github.com/V1ct0rSb/ToDoListSpringBoot"
-                  target="_blank"
-                  class="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
-                  ><span data-lang-key="projectLink">Ver no GitHub</span>
-                  <i class="fas fa-arrow-right ml-1"></i
-                ></a>
+              </div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-400 rounded-full border-4 border-white dark:border-slate-800 z-10 group-hover:scale-150 transition-transform order-2 shadow-md"
+              ></div>
+              <div class="md:w-5/12 pl-8 md:pl-8 order-3">
+                <p
+                  class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
+                  data-lang-key="expRiseUp"
+                >
+                  Liderança no desenvolvimento front-end de plataforma de gestão
+                  de campeonatos. Prototipação com Figma e implementação
+                  HTML5/CSS3.
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >HTML/CSS</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >JavaScript</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Figma</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                    >Lucidchart</span
+                  >
+                </div>
               </div>
             </div>
           </div>
-          <div class="text-center mt-12">
+        </div>
+      </section>
+
+      <!-- PROJETOS EM DESTAQUE -->
+      <section id="projects" class="py-24 bg-white dark:bg-[#0b1120]">
+        <div class="container mx-auto px-4 sm:px-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-12"
+          >
+            <div>
+              <h2
+                class="text-3xl font-bold mb-2 text-slate-900 dark:text-white"
+                data-lang-key="projTitle"
+              >
+                Projetos em Destaque
+              </h2>
+              <p class="text-slate-500 dark:text-slate-400">
+                Aplicações focadas em escalabilidade e segurança.
+              </p>
+            </div>
+            <!-- Botão Ver Todos Padronizado -->
             <a
               href="https://github.com/V1ct0rSb?tab=repositories"
               target="_blank"
-              data-lang-key="seeAllRepos"
-              class="bg-slate-800 text-white dark:bg-blue-600 dark:hover:bg-blue-700 font-bold py-3 px-8 rounded-full hover:bg-slate-900 transform hover:scale-105"
+              class="flex items-center justify-center h-10 px-4 text-blue-600 hover:underline font-medium mt-4 md:mt-0 group"
             >
-              Ver todos os repositórios
+              <span data-lang-key="viewAllGithub">Ver todos no GitHub</span>
+              <i
+                class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+              ></i>
+            </a>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Projeto 1: Easy Order API (Padrão de altura e padding uniforme) -->
+            <div
+              class="group bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col p-6"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <div
+                  class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-orange-600 dark:text-orange-400 shadow-sm"
+                >
+                  <i class="fas fa-utensils text-xl"></i>
+                </div>
+                <a
+                  href="https://github.com/V1ct0rSb/spring-boot-easy-order-api"
+                  target="_blank"
+                  class="text-slate-400 hover:text-blue-600 transition-colors"
+                  title="Ver no GitHub"
+                  ><i class="fab fa-github text-xl"></i
+                ></a>
+              </div>
+
+              <h3
+                class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+              >
+                Easy Order API
+              </h3>
+              <p
+                class="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed flex-grow"
+                data-lang-key="projEasyOrderDesc"
+              >
+                Backend robusto para delivery de comida. Arquitetura orientada a
+                eventos com <strong>RabbitMQ</strong> para desacoplamento. Conta
+                com autenticação JWT, integração ViaCEP e Flyway para
+                versionamento de banco.
+              </p>
+
+              <div
+                class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50"
+              >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >Java 17</span
+                >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >Spring Boot 3</span
+                >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >RabbitMQ</span
+                >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >PostgreSQL</span
+                >
+              </div>
+            </div>
+
+            <!-- Projeto 2: SergipePay (Padrão de altura e padding uniforme) -->
+            <div
+              class="group bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col p-6"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <div
+                  class="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-600 dark:text-green-400 shadow-sm"
+                >
+                  <i class="fas fa-wallet text-xl"></i>
+                </div>
+                <a
+                  href="https://github.com/V1ct0rSb/sergipe-pay"
+                  target="_blank"
+                  class="text-slate-400 hover:text-blue-600 transition-colors"
+                  title="Ver no GitHub"
+                  ><i class="fab fa-github text-xl"></i
+                ></a>
+              </div>
+
+              <h3
+                class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+              >
+                SergipePay
+              </h3>
+              <p
+                class="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed flex-grow"
+                data-lang-key="projSergipePayDesc"
+              >
+                API RESTful simulando uma conta digital. Foco total em segurança
+                com <strong>Spring Security e BCrypt</strong>. Inclui cobertura
+                de testes unitários com JUnit 5 e Mockito, além de documentação
+                Swagger.
+              </p>
+
+              <div
+                class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50"
+              >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >Spring Security</span
+                >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >JWT</span
+                >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >JUnit 5</span
+                >
+                <span
+                  class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
+                  >Swagger</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 text-center md:hidden">
+            <!-- Botão Ver Todos Padronizado Mobile -->
+            <a
+              href="https://github.com/V1ct0rSb?tab=repositories"
+              target="_blank"
+              class="inline-flex items-center text-blue-600 hover:underline font-medium justify-center h-10 px-4"
+            >
+              <span data-lang-key="viewAllGithub">Ver todos no GitHub</span>
+              <i class="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO SKILLS -->
-      <section id="skills" class="py-20">
+      <!-- TECH STACK (GRID) -->
+      <section id="skills" class="py-24 bg-slate-50 dark:bg-[#151e32]">
         <div class="container mx-auto px-4 sm:px-6">
           <h2
-            data-lang-key="skillsTitle"
-            class="text-3xl sm:text-4xl font-bold text-center mb-12"
+            class="text-3xl font-bold text-center mb-12 text-slate-900 dark:text-white"
+            data-lang-key="stackTitle"
           >
-            Tecnologias & Ferramentas
+            Arsenal Tecnológico
           </h2>
-          <div
-            class="max-w-4xl mx-auto bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-lg shadow-lg"
-          >
+
+          <!-- Grid de Tecnologias -->
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <!-- Card Java -->
             <div
-              class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-8 text-center"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 hover:shadow-md transition-all group"
             >
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-java text-5xl text-blue-400 mb-2"></i
-                ><span class="font-medium">Java</span>
+              <i
+                class="fab fa-java text-4xl text-slate-400 group-hover:text-orange-500 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">Java</h3>
+            </div>
+
+            <!-- Card Spring -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-green-500 hover:shadow-md transition-all group"
+            >
+              <i
+                class="fas fa-leaf text-4xl text-slate-400 group-hover:text-green-500 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">
+                Spring Boot
+              </h3>
+            </div>
+
+            <!-- Card SQL -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-600 hover:shadow-md transition-all group col-span-2 md:col-span-1"
+            >
+              <i
+                class="fas fa-database text-4xl text-slate-400 group-hover:text-blue-600 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">SQL</h3>
+              <p class="text-xs text-slate-500 mt-1">Postgres, MySQL, SQLite</p>
+            </div>
+
+            <!-- Card Testes -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-red-400 hover:shadow-md transition-all group"
+            >
+              <i
+                class="fas fa-vial text-4xl text-slate-400 group-hover:text-red-400 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">
+                Testes
+              </h3>
+              <p class="text-xs text-slate-500 mt-1">JUnit 5 & Mockito</p>
+            </div>
+
+            <!-- Card Docker -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-400 hover:shadow-md transition-all group"
+            >
+              <i
+                class="fab fa-docker text-4xl text-slate-400 group-hover:text-blue-400 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">
+                Docker
+              </h3>
+            </div>
+
+            <!-- Card Microservices -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-500 hover:shadow-md transition-all group"
+            >
+              <i
+                class="fas fa-network-wired text-4xl text-slate-400 group-hover:text-purple-500 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">
+                Microservices
+              </h3>
+            </div>
+
+            <!-- Card Git -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:shadow-md transition-all group"
+            >
+              <i
+                class="fab fa-git-alt text-4xl text-slate-400 group-hover:text-red-500 mb-3 transition-colors"
+              ></i>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">Git</h3>
+            </div>
+
+            <!-- Card Frontend -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-500 hover:shadow-md transition-all group col-span-2 md:col-span-1 lg:col-span-1"
+            >
+              <div class="flex justify-center gap-2 mb-3">
+                <i
+                  class="fab fa-html5 text-3xl text-slate-400 group-hover:text-orange-500 transition-colors"
+                ></i>
+                <i
+                  class="fab fa-css3-alt text-3xl text-slate-400 group-hover:text-blue-500 transition-colors"
+                ></i>
               </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fa-solid fa-leaf text-5xl text-green-600 mb-2"></i
-                ><span class="font-medium">Spring Boot</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-python text-5xl text-yellow-500 mb-2"></i
-                ><span class="font-medium">Python</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-js-square text-5xl text-yellow-400 mb-2"></i
-                ><span class="font-medium">JavaScript</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-html5 text-5xl text-orange-500 mb-2"></i
-                ><span class="font-medium">HTML5</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-css3-alt text-5xl text-blue-500 mb-2"></i
-                ><span class="font-medium">CSS3</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-react text-5xl text-cyan-400 mb-2"></i
-                ><span class="font-medium">React</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fab fa-git-alt text-5xl text-red-500 mb-2"></i
-                ><span class="font-medium">Git</span>
-              </div>
-              <div class="flex flex-col items-center transform hover:scale-110">
-                <i class="fas fa-database text-5xl text-indigo-500 mb-2"></i
-                ><span class="font-medium">SQL</span>
-              </div>
+              <h3 class="font-bold text-slate-700 dark:text-slate-200">
+                HTML/CSS
+              </h3>
+            </div>
+
+            <!-- Card Inglês -->
+            <div
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-md transition-all group col-span-2 md:col-span-1 lg:col-span-2"
+            >
+              <i
+                class="fas fa-language text-4xl text-slate-400 group-hover:text-indigo-500 mb-3 transition-colors"
+              ></i>
+              <h3
+                class="font-bold text-slate-700 dark:text-slate-200"
+                data-lang-key="techEnglish"
+              >
+                Inglês Técnico
+              </h3>
+              <p class="text-xs text-slate-500 mt-1">Leitura & Escrita</p>
+            </div>
+          </div>
+
+          <!-- Lista secundária -->
+          <div class="mt-12 text-center">
+            <p
+              class="text-slate-500 mb-4 font-medium text-sm uppercase tracking-wider"
+              data-lang-key="otherSkills"
+            >
+              Outras Competências & Ferramentas:
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <span
+                class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
+                >RabbitMQ</span
+              >
+              <span
+                class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
+                >Flyway</span
+              >
+              <span
+                class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
+                >Swagger / OpenAPI</span
+              >
+              <span
+                class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
+                >Scrum / Agile</span
+              >
+              <span
+                class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
+                >Insomnia / Postman</span
+              >
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO CONTATO -->
-      <section id="contact" class="py-20 bg-slate-800 dark:bg-black">
-        <div class="container mx-auto px-4 sm:px-6 text-center text-white">
-          <h2
-            data-lang-key="contactTitle"
-            class="text-3xl sm:text-4xl font-bold mb-4"
-          >
-            Vamos Conversar?
+      <!-- CTA / CONTATO -->
+      <section
+        id="contact"
+        class="py-24 bg-[#0b1120] border-t border-slate-800 text-white"
+      >
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold mb-6" data-lang-key="contactTitle">
+            Vamos construir algo juntos?
           </h2>
           <p
-            data-lang-key="contactSubtitle"
-            class="text-gray-300 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
+            class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+            data-lang-key="contactDesc"
           >
-            Interessado em discutir um projeto ou uma colaboração técnica? Envie
-            um e-mail ou me encontre nas redes abaixo para iniciarmos uma
-            conversa.
+            Estou disponível para oportunidades como Desenvolvedor Backend
+            Júnior. Se você busca alguém focado em qualidade de código e
+            performance, entre em contato.
           </p>
 
-          <a
-            href="mailto:victor.barreto.dev@exemplo.com"
-            class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 dark:hover:bg-blue-500 transform hover:scale-105 inline-block mb-10"
+          <div
+            class="flex flex-col sm:flex-row justify-center items-center gap-6"
           >
-            <i class="fas fa-envelope mr-2"></i>
-            <span data-lang-key="contactButton">Enviar um Email</span>
-          </a>
-
-          <div class="flex justify-center space-x-6">
+            <!-- Botão de Email Padronizado (H-12) -->
             <a
-              href="https://www.linkedin.com/in/victor-barreto-6a3129258/"
-              target="_blank"
-              aria-label="LinkedIn"
-              class="text-gray-300 hover:text-white text-3xl transform hover:scale-125"
-              ><i class="fab fa-linkedin"></i
-            ></a>
+              href="mailto:denvictor.sbarreto@gmail.com?subject=Oportunidade%20para%20Desenvolvedor%20Backend%20-%20Portfólio%20Victor%20Barreto&body=Olá%20Victor,%0D%0A%0D%0AEscrevo%20para%20discutir%20uma%20oportunidade%20de%20Desenvolvimento%20Backend%20que%20encontrei%20em%20seu%20portfólio.%0D%0A%0D%0A[Insira%20sua%20mensagem%20aqui]%0D%0A%0D%0AAtenciosamente,"
+              class="flex items-center justify-center h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition-transform hover:scale-[1.02] flex items-center gap-2 shadow-lg shadow-blue-900/50"
+            >
+              <i class="fas fa-envelope"></i>
+              <span data-lang-key="btnEmail">Enviar Email</span>
+            </a>
+            <!-- Botão LinkedIn Padronizado (H-12) -->
             <a
-              href="https://github.com/V1ct0rSb"
+              href="https://linkedin.com/in/victor-barreto-6a3129258"
               target="_blank"
-              aria-label="GitHub"
-              class="text-gray-300 hover:text-white text-3xl transform hover:scale-125"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a
-              href="https://www.instagram.com/_victorsb"
-              target="_blank"
-              aria-label="Instagram"
-              class="text-gray-300 hover:text-white text-3xl transform hover:scale-125"
-              ><i class="fab fa-instagram"></i
-            ></a>
+              class="flex items-center justify-center h-12 bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-full border border-slate-700 transition-transform hover:scale-[1.02] flex items-center gap-2"
+            >
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- RODAPÉ -->
     <footer
-      role="contentinfo"
-      class="bg-slate-900 dark:bg-black text-gray-400 py-6"
+      class="bg-[#050914] py-8 text-center text-slate-500 text-sm border-t border-slate-900"
     >
-      <div class="container mx-auto px-4 sm:px-6 text-center">
-        <p>
-          &copy; <span id="current-year"></span> Victor Barreto.
-          <span data-lang-key="footerRights"
-            >Todos os direitos reservados.</span
-          >
-        </p>
-      </div>
+      <p>
+        &copy; <span id="year"></span> Victor Barreto.
+        <span data-lang-key="footer">Todos os direitos reservados.</span>
+      </p>
     </footer>
 
-    <!-- Botão de Voltar ao Topo -->
-    <button
-      id="to-top-button"
-      title="Voltar ao topo"
-      data-lang-title-key="toTopTitle"
-      class="hidden fixed bottom-8 right-8 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-slate-900 transform hover:scale-110"
-    >
-      <i class="fas fa-arrow-up"></i>
-    </button>
-
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- LÓGICA DE TRADUÇÃO ---
-        const translations = {
-          pt: {
-            // Meta e Título
-            pageTitle: "Victor Barreto - Portfólio Pessoal",
-            metaDescription:
-              "Portfólio pessoal de Victor Barreto, desenvolvedor de software especializado em backend com Java e Spring Boot.",
-            // Navegação
-            navAbout: "Sobre",
-            navProjects: "Projetos",
-            navSkills: "Skills",
-            navContact: "Contato",
-            mainNavAriaLabel: "Navegação Principal",
-            // Seletores de Idioma e Tema (Atributos)
-            langPtTitle: "Mudar para Português",
-            langPtAriaLabel: "Mudar para Português",
-            langEnTitle: "Mudar para Inglês",
-            langEnAriaLabel: "Mudar para Inglês",
-            themeToggleTitle: "Alternar tema",
-            themeToggleAriaLabel: "Alternar tema",
-            // Seção Hero
-            heroTitle: "Olá, eu sou Victor Barreto",
-            heroSubtitle:
-              "Desenvolvedor de software focado em criar soluções backend eficientes com Java e Spring Boot, e apaixonado por desenvolver interfaces de usuário intuitivas.",
-            heroButton: "Veja meus projetos",
-            profileAlt: "Foto de perfil de Victor Barreto",
-            // Seção Sobre
-            aboutTitle: "Sobre Mim",
-            aboutPoint1:
-              "Desenvolvedor de Software com formação em Sistemas de Informação e especialização em ecossistemas backend com <strong>Java e Spring Boot</strong>.",
-            aboutPoint2:
-              "Focado em construir e otimizar aplicações de alta performance, aplicando princípios de <strong>código limpo e arquitetura sólida</strong>.",
-            aboutPoint3:
-              "Desenvolvo projetos <strong>Fullstack</strong>, integrando um backend robusto em Java com interfaces de usuário responsivas e modernas, criando experiências de usuário eficientes e coesas.",
-            aboutPoint4:
-              "Meu foco é entregar <strong>código limpo e bem documentado</strong>, otimizando a performance de sistemas e garantindo a escalabilidade de aplicações em ambientes de produção.",
-            // Seção Projetos
-            projectsTitle: "Meus Projetos",
-            project1Title: "DevStart",
-            project1Desc:
-              "O DevStart é uma plataforma gratuita para iniciantes em programação. O projeto centraliza recursos de qualidade, como vídeos, cursos e links, para tornar o aprendizado de programação mais simples, eficiente e acessível a todos.",
-            project1Alt: "Imagem de pré-visualização do Projeto DevStart",
-            project2Title: "LinkHub API",
-            project2Desc:
-              "Este projeto é o backend de uma aplicação de gerenciamento de links, permitindo que os usuários salvem, organizem e acessem seus links da web de forma eficiente, através de uma API RESTful robusta e bem arquitetada.",
-            project2Alt: "Imagem de pré-visualização do Projeto LinkHub API",
-            project3Title: "ToDo List",
-            project3Desc:
-              "Este é um projeto pessoal de uma API RESTful para gerenciamento de tarefas (ToDo List), desenvolvido com Spring Boot. A aplicação permite criar, listar, atualizar e excluir tarefas, ordenadas por prioridade e nome.",
-            project3Alt: "Imagem de pré-visualização do Projeto ToDo List",
-            projectLink: "Ver no GitHub",
-            seeAllRepos: "Ver todos os repositórios",
-            // Seção Skills
-            skillsTitle: "Tecnologias & Ferramentas",
-            // Seção Contato
-            contactTitle: "Vamos Conversar?",
-            contactSubtitle:
-              "Interessado em discutir um projeto ou uma colaboração técnica? Envie um e-mail ou me encontre nas redes abaixo para iniciarmos uma conversa.",
-            contactButton: "Enviar um Email",
-            // Rodapé e Voltar ao Topo
-            footerRights: "Todos os direitos reservados.",
-            toTopTitle: "Voltar ao topo",
-          },
-          en: {
-            // Meta and Title
-            pageTitle: "Victor Barreto - Personal Portfolio",
-            metaDescription:
-              "Personal portfolio of Victor Barreto, a software developer specializing in backend with Java and Spring Boot.",
-            // Navigation
-            navAbout: "About",
-            navProjects: "Projects",
-            navSkills: "Skills",
-            navContact: "Contact",
-            mainNavAriaLabel: "Main Navigation",
-            // Language and Theme Switchers (Attributes)
-            langPtTitle: "Change to Portuguese",
-            langPtAriaLabel: "Change to Portuguese",
-            langEnTitle: "Change to English",
-            langEnAriaLabel: "Change to English",
-            themeToggleTitle: "Toggle theme",
-            themeToggleAriaLabel: "Toggle theme",
-            // Hero Section
-            heroTitle: "Hello, I'm Victor Barreto",
-            heroSubtitle:
-              "Software developer focused on creating efficient backend solutions with Java and Spring Boot, and passionate about building intuitive user interfaces.",
-            heroButton: "See my projects",
-            profileAlt: "Victor Barreto's profile picture",
-            // About Section
-            aboutTitle: "About Me",
-            aboutPoint1:
-              "Software Developer with a degree in Information Systems and specialization in backend ecosystems with <strong>Java and Spring Boot</strong>.",
-            aboutPoint2:
-              "Focused on building and optimizing high-performance applications, applying principles of <strong>clean code and solid architecture</strong>.",
-            aboutPoint3:
-              "I develop <strong>Fullstack</strong> projects, integrating a robust Java backend with responsive and modern user interfaces, creating efficient and cohesive user experiences.",
-            aboutPoint4:
-              "My focus is on delivering <strong>clean and well-documented code</strong>, optimizing system performance and ensuring the scalability of applications in production environments.",
-            // Projects Section
-            projectsTitle: "My Projects",
-            project1Title: "DevStart",
-            project1Desc:
-              "DevStart is a free platform for programming beginners. The project centralizes quality resources, such as videos, courses, and links, to make learning programming simpler, more efficient, and accessible to everyone.",
-            project1Alt: "Preview image of the DevStart Project",
-            project2Title: "LinkHub API",
-            project2Desc:
-              "This project is the backend for a link management application, allowing users to save, organize, and access their web links efficiently through a robust and well-architected RESTful API.",
-            project2Alt: "Preview image of the LinkHub API Project",
-            project3Title: "ToDo List",
-            project3Desc:
-              "This is a personal project of a RESTful API for task management (ToDo List), developed with Spring Boot. The application allows creating, listing, updating, and deleting tasks, ordered by priority and name.",
-            project3Alt: "Preview image of the ToDo List Project",
-            projectLink: "View on GitHub",
-            seeAllRepos: "See all repositories",
-            // Skills Section
-            skillsTitle: "Technologies & Tools",
-            // Contact Section
-            contactTitle: "Let's Talk?",
-            contactSubtitle:
-              "Interested in discussing a project or a technical collaboration? Send an email or find me on the networks below to start a conversation.",
-            contactButton: "Send an Email",
-            // Footer and Back to Top
-            footerRights: "All rights reserved.",
-            toTopTitle: "Back to top",
-          },
-        };
+      // --- Traduções ---
+      const translations = {
+        pt: {
+          metaDescription:
+            "Portfólio de Victor Barreto, Desenvolvedor Backend especializado em Java, Spring Boot.",
+          navAbout: "Sobre",
+          navExp: "Experiência",
+          navProjects: "Projetos",
+          navSkills: "Stack",
+          heroDesc:
+            "Especialista em construir <strong>APIs RESTful robustas</strong> e escaláveis com Java e Spring Boot. Focado em arquitetura limpa, microserviços e soluções de alta performance.",
+          heroBtnProjects: "Ver Projetos",
+          aboutTitle: "Sobre Mim",
+          aboutText1:
+            "Sou um <strong>Desenvolvedor Back-end</strong> apaixonado por resolver problemas complexos através de código limpo e eficiente. Sou <strong>Graduado em Sistemas de Informação</strong> pela Unit (Concluído em 07/2025), tendo focado minha carreira no ecossistema <strong>Java</strong>.",
+          aboutText2:
+            "Minha experiência vai além do código: atuei em projetos reais integrando o polo tecnológico <strong>Porto Digital</strong>, onde desenvolvi soluções para automação fiscal e gestão de eventos. Busco sempre aplicar as melhores práticas como TDD, SOLID e arquitetura de microsserviços.",
+          statYears: "Anos de Estudo/Prática",
+          statProjects: "Projetos GitHub",
+          statResidencies: "Residências/Estágios",
+          expTitle: "Trajetória Profissional",
+          expFabtech:
+            "Desenvolvimento de app híbrido (Ionic + SQLite) com sincronização online/offline. Atuação Fullstack em portal de futebol e modernização de interfaces legado.",
+          expGrowUp:
+            "Desenvolvimento de ChatBot para automação de serviços fiscais. Integração com Evolution API, geração de PDF e containerização com Docker.",
+          expRiseUp:
+            "Liderança no desenvolvimento front-end de plataforma de gestão de campeonatos. Prototipação com Figma e implementação HTML5/CSS3.",
+          projTitle: "Projetos em Destaque",
+          viewAllGithub: "Ver todos no GitHub",
+          projEasyOrderDesc:
+            "Backend robusto para delivery de comida. Arquitetura orientada a eventos com <strong>RabbitMQ</strong> para desacoplamento. Conta com autenticação JWT, integração ViaCEP e Flyway.",
+          projSergipePayDesc:
+            "API RESTful simulando uma conta digital. Foco total em segurança com <strong>Spring Security e BCrypt</strong>. Inclui cobertura de testes unitários com JUnit 5 e Mockito.",
+          stackTitle: "Arsenal Tecnológico",
+          techEnglish: "Inglês Técnico",
+          otherSkills: "Outras Competências & Ferramentas:",
+          contactTitle: "Vamos construir algo juntos?",
+          contactDesc:
+            "Estou disponível para oportunidades como Desenvolvedor Backend Júnior. Se você busca alguém focado em qualidade de código e performance, entre em contato.",
+          btnEmail: "Enviar Email",
+          footer: "Todos os direitos reservados.",
+        },
+        en: {
+          metaDescription:
+            "Portfolio of Victor Barreto, Backend Developer specializing in Java, Spring Boot.",
+          navAbout: "About",
+          navExp: "Experience",
+          navProjects: "Projects",
+          navSkills: "Stack",
+          heroDesc:
+            "Specialist in building <strong>robust RESTful APIs</strong> and scalable solutions with Java and Spring Boot. Focused on clean architecture, microservices, and high-performance software.",
+          heroBtnProjects: "View Projects",
+          aboutTitle: "About Me",
+          aboutText1:
+            "I am a <strong>Backend Developer</strong> passionate about solving complex problems through clean and efficient code. <strong>Graduated in Information Systems</strong> from Unit (Completed in 07/2025), focusing my career on the <strong>Java</strong> ecosystem.",
+          aboutText2:
+            "My experience goes beyond code: I worked on real projects integrating the <strong>Porto Digital</strong> tech hub, developing solutions for fiscal automation and event management.",
+          statYears: "Years Study/Practice",
+          statProjects: "GitHub Projects",
+          statResidencies: "Residencies/Internships",
+          expTitle: "Professional Journey",
+          expFabtech:
+            "Development of hybrid app (Ionic + SQLite) with online/offline sync. Fullstack role in a football portal and legacy interface modernization.",
+          expGrowUp:
+            "ChatBot development for fiscal service automation. Integration with Evolution API, PDF generation, and Docker containerization.",
+          expRiseUp:
+            "Leadership in front-end development for a championship management platform. Prototyping with Figma and HTML5/CSS3 implementation.",
+          projTitle: "Featured Projects",
+          viewAllGithub: "View all on GitHub",
+          projEasyOrderDesc:
+            "Robust backend for food delivery. Event-driven architecture with <strong>RabbitMQ</strong> for decoupling. Features JWT auth, ViaCEP integration, and Flyway.",
+          projSergipePayDesc:
+            "RESTful API simulating a digital bank account. Total focus on security with <strong>Spring Security and BCrypt</strong>. Includes unit testing coverage with JUnit 5 and Mockito.",
+          stackTitle: "Tech Stack",
+          techEnglish: "Technical English",
+          otherSkills: "Other Skills & Tools:",
+          contactTitle: "Let's build something together?",
+          contactDesc:
+            "I am available for Junior Backend Developer opportunities. If you are looking for someone focused on code quality and performance, get in touch.",
+          btnEmail: "Send Email",
+          footer: "All rights reserved.",
+        },
+      };
 
-        const setLanguage = (language) => {
-          const lang = translations[language] ? language : "pt";
-          document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
-          const currentTranslations = translations[lang];
+      // --- Estado e Funções ---
+      const html = document.documentElement;
+      const themeBtn = document.getElementById("theme-toggle");
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const header = document.querySelector("header");
 
-          document.title = currentTranslations.pageTitle;
+      // Idioma
+      function setLanguage(lang) {
+        const t = translations[lang];
+        document.querySelectorAll("[data-lang-key]").forEach((el) => {
+          const key = el.getAttribute("data-lang-key");
+          if (t[key]) el.innerHTML = t[key];
+        });
+
+        // Estilo dos botões
+        if (lang === "pt") {
           document
-            .querySelector('meta[name="description"]')
-            .setAttribute("content", currentTranslations.metaDescription);
+            .getElementById("lang-pt")
+            .classList.add("text-blue-600", "bg-white", "dark:bg-slate-700");
+          document.getElementById("lang-pt").classList.remove("text-gray-400");
+          document
+            .getElementById("lang-en")
+            .classList.remove("text-blue-600", "bg-white", "dark:bg-slate-700");
+          document.getElementById("lang-en").classList.add("text-gray-400");
+        } else {
+          document
+            .getElementById("lang-en")
+            .classList.add("text-blue-600", "bg-white", "dark:bg-slate-700");
+          document.getElementById("lang-en").classList.remove("text-gray-400");
+          document
+            .getElementById("lang-pt")
+            .classList.remove("text-blue-600", "bg-white", "dark:bg-slate-700");
+          document.getElementById("lang-pt").classList.add("text-gray-400");
+        }
+      }
 
-          document.querySelectorAll("[data-lang-key]").forEach((element) => {
-            const key = element.getAttribute("data-lang-key");
-            if (currentTranslations[key]) {
-              element.innerHTML = currentTranslations[key];
+      document.getElementById("lang-pt").onclick = () => setLanguage("pt");
+      document.getElementById("lang-en").onclick = () => setLanguage("en");
+
+      // Tema Dark/Light
+      themeBtn.onclick = () => {
+        html.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          html.classList.contains("dark") ? "dark" : "light"
+        );
+      };
+
+      // Menu Mobile
+      mobileMenuBtn.onclick = () => {
+        mobileMenu.classList.toggle("hidden");
+      };
+
+      // Custom Smooth Scroll com Easing Sutil
+      document.querySelectorAll(".scroll-link").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (!targetId || targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerHeight = header.offsetHeight;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerHeight - 20; // 20px de respiro
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Fechar menu mobile se estiver aberto
+            if (!mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
             }
-          });
-
-          document
-            .querySelectorAll("[data-lang-title-key]")
-            .forEach((element) => {
-              const key = element.getAttribute("data-lang-title-key");
-              if (currentTranslations[key]) {
-                element.setAttribute("title", currentTranslations[key]);
-              }
-            });
-
-          document
-            .querySelectorAll("[data-lang-aria-key]")
-            .forEach((element) => {
-              const key = element.getAttribute("data-lang-aria-key");
-              if (currentTranslations[key]) {
-                element.setAttribute("aria-label", currentTranslations[key]);
-              }
-            });
-
-          document
-            .querySelectorAll("[data-lang-alt-key]")
-            .forEach((element) => {
-              const key = element.getAttribute("data-lang-alt-key");
-              if (currentTranslations[key]) {
-                element.setAttribute("alt", currentTranslations[key]);
-              }
-            });
-
-          localStorage.setItem("language", lang);
-
-          // Lógica de Estilo para Botões de Idioma
-          const langPtButton = document.getElementById("lang-pt");
-          const langEnButton = document.getElementById("lang-en");
-          const baseClasses =
-            "lang-btn px-3 py-1 rounded-full flex items-center gap-2 transition-all duration-300";
-          const activeClasses =
-            "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm";
-          const inactiveClasses =
-            "bg-transparent text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400";
-
-          if (lang === "pt") {
-            langPtButton.className = `${baseClasses} ${activeClasses}`;
-            langEnButton.className = `${baseClasses} ${inactiveClasses}`;
-          } else {
-            langEnButton.className = `${baseClasses} ${activeClasses}`;
-            langPtButton.className = `${baseClasses} ${inactiveClasses}`;
-          }
-        };
-
-        const langPtButton = document.getElementById("lang-pt");
-        const langEnButton = document.getElementById("lang-en");
-        langPtButton.addEventListener("click", () => setLanguage("pt"));
-        langEnButton.addEventListener("click", () => setLanguage("en"));
-
-        const userLang =
-          localStorage.getItem("language") || navigator.language.split("-")[0];
-        setLanguage(userLang);
-
-        // --- LÓGICA PARA O BOTÃO DE TEMA (CLARO/ESCURO) ---
-        const themeToggleDarkIcon = document.getElementById(
-          "theme-toggle-dark-icon"
-        );
-        const themeToggleLightIcon = document.getElementById(
-          "theme-toggle-light-icon"
-        );
-        const themeToggleButton = document.getElementById("theme-toggle");
-
-        const applyTheme = () => {
-          if (
-            localStorage.getItem("color-theme") === "dark" ||
-            (!("color-theme" in localStorage) &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
-          ) {
-            document.documentElement.classList.add("dark");
-            themeToggleLightIcon.classList.remove("hidden");
-            themeToggleDarkIcon.classList.add("hidden");
-          } else {
-            document.documentElement.classList.remove("dark");
-            themeToggleDarkIcon.classList.remove("hidden");
-            themeToggleLightIcon.classList.add("hidden");
-          }
-        };
-
-        themeToggleButton.addEventListener("click", function () {
-          const isDark = document.documentElement.classList.toggle("dark");
-          localStorage.setItem("color-theme", isDark ? "dark" : "light");
-          applyTheme();
-        });
-
-        applyTheme();
-
-        // --- LÓGICA PARA O MENU MOBILE ---
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const mobileMenuIcon = mobileMenuButton.querySelector("i");
-
-        mobileMenuButton.addEventListener("click", () => {
-          const isExpanded =
-            mobileMenuButton.getAttribute("aria-expanded") === "true";
-          mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
-          mobileMenu.classList.toggle("hidden");
-          mobileMenuIcon.classList.toggle("fa-bars");
-          mobileMenuIcon.classList.toggle("fa-times");
-          // Bloqueia o scroll do body quando o menu está aberto
-          document.body.classList.toggle("overflow-hidden", !isExpanded);
-        });
-
-        mobileMenu.addEventListener("click", (event) => {
-          if (event.target.tagName === "A") {
-            mobileMenu.classList.add("hidden");
-            mobileMenuButton.setAttribute("aria-expanded", "false");
-            mobileMenuIcon.classList.add("fa-bars");
-            mobileMenuIcon.classList.remove("fa-times");
-            // Libera o scroll do body ao fechar o menu
-            document.body.classList.remove("overflow-hidden");
           }
         });
-
-        // --- LÓGICA PARA O BOTÃO DE VOLTAR AO TOPO ---
-        const toTopButton = document.getElementById("to-top-button");
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 300) {
-            toTopButton.classList.remove("hidden");
-          } else {
-            toTopButton.classList.add("hidden");
-          }
-        });
-        toTopButton.addEventListener("click", () => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        // --- ATUALIZA O ANO NO RODAPÉ ---
-        document.getElementById("current-year").textContent =
-          new Date().getFullYear();
-
-        // --- LÓGICA PARA LINK ATIVO NA NAVEGAÇÃO ---
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        const activateNavLink = () => {
-          let index = sections.length;
-          while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
-
-          navLinks.forEach((link) => link.classList.remove("active"));
-
-          const activeLinks = document.querySelectorAll(
-            `.nav-link[href="#${sections[index].id}"]`
-          );
-          if (activeLinks.length > 0) {
-            activeLinks.forEach((link) => link.classList.add("active"));
-          }
-        };
-
-        activateNavLink();
-        window.addEventListener("scroll", activateNavLink);
       });
+
+      // Highlight Nav Link on Scroll
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - header.offsetHeight - 100) {
+            current = "#" + section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === current) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // --- Lógica do Contador Interativo ---
+      const animateCounters = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll(".counter-value");
+            counters.forEach((counter) => {
+              const target = parseInt(counter.getAttribute("data-target"));
+              let current = 0;
+              const duration = 2000; // 2 segundos
+              const increment = target / (duration / 16); // 60 FPS
+
+              const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                  counter.textContent = Math.ceil(current).toString();
+                  requestAnimationFrame(updateCounter);
+                } else {
+                  counter.textContent = target.toString();
+                }
+              };
+              updateCounter();
+            });
+            observer.unobserve(entry.target); // Para rodar apenas uma vez
+          }
+        });
+      };
+
+      const statsContainer = document.getElementById("stats-container");
+      if (statsContainer) {
+        const observer = new IntersectionObserver(animateCounters, {
+          threshold: 0.5, // Aciona quando 50% do elemento está visível
+        });
+        observer.observe(statsContainer);
+      }
+
+      // Ano no Footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Inicialização
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        html.classList.add("dark");
+      } else {
+        html.classList.remove("dark");
+      }
+
+      // Iniciar em PT
+      setLanguage("pt");
     </script>
   </body>
 </html>
