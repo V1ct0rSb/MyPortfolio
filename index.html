@@ -7,7 +7,7 @@
     <title>Victor Barreto - Backend Developer</title>
     <meta
       name="description"
-      content="Portfólio de Victor Barreto, Desenvolvedor Backend especializado em Java, Spring Boot, SQL e Arquitetura de Software."
+      content="Portfólio de Victor Barreto, Desenvolvedor Backend Java & Spring Boot. Graduado em SI e estudante de ADS."
       data-lang-meta-key="metaDescription"
     />
 
@@ -39,7 +39,7 @@
         font-family: "JetBrains Mono", monospace;
       }
 
-      /* Transições */
+      /* Transições Suaves */
       * {
         transition: background-color 0.3s ease, border-color 0.3s ease;
       }
@@ -81,13 +81,28 @@
         width: 100%;
       }
 
-      /* Padrão de Fundo para o Tema Claro */
+      /* Padrão de Fundo Sutil */
       .bg-grid-pattern {
         background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
         background-size: 24px 24px;
       }
       .dark .bg-grid-pattern {
-        background-image: none; /* Remove no dark mode para manter o clean dark */
+        background-image: radial-gradient(#1e293b 1px, transparent 1px);
+      }
+
+      /* Animação do Badge (Suave e Corrigida) */
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(2.4);
+          opacity: 0;
+        }
+      }
+      .animate-ripple {
+        animation: ripple 2s cubic-bezier(0, 0, 0.2, 1) infinite;
       }
     </style>
 
@@ -111,7 +126,7 @@
   >
     <!-- CABEÇALHO -->
     <header
-      class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none transition-colors duration-300"
+      class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-300"
     >
       <div
         class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
@@ -251,11 +266,23 @@
           class="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center"
         >
           <div>
+            <!-- Badge de Disponibilidade -->
             <div
-              class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-blue-600 uppercase bg-blue-50 dark:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800 font-code shadow-sm"
+              class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-bold tracking-wider text-green-700 dark:text-green-400 uppercase bg-green-50 dark:bg-green-900/20 rounded-full border border-green-200 dark:border-green-800 font-code shadow-sm"
             >
-              Backend Developer
+              <div class="relative flex h-3 w-3 items-center justify-center">
+                <span
+                  class="animate-ripple absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
+                ></span>
+              </div>
+              <span data-lang-key="heroBadge"
+                >Disponível para Estágio e Júnior</span
+              >
             </div>
+
             <h1
               class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-slate-900 dark:text-white"
             >
@@ -275,15 +302,15 @@
             </p>
 
             <div class="flex flex-wrap gap-4">
-              <!-- Botão Primário Padronizado -->
+              <!-- Botão Primário Melhorado com Gradiente -->
               <a
                 href="#projects"
-                class="scroll-link flex items-center justify-center h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40"
+                class="scroll-link flex items-center justify-center h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40"
                 data-lang-key="heroBtnProjects"
               >
                 Ver Projetos
               </a>
-              <!-- Botão Secundário Padronizado -->
+              <!-- Botão GitHub -->
               <a
                 href="https://github.com/V1ct0rSb"
                 target="_blank"
@@ -291,7 +318,7 @@
               >
                 <i class="fab fa-github text-lg"></i> GitHub
               </a>
-              <!-- Botão Secundário Padronizado -->
+              <!-- Botão LinkedIn -->
               <a
                 href="https://linkedin.com/in/victor-barreto-6a3129258"
                 target="_blank"
@@ -310,19 +337,19 @@
               >
               <div class="flex gap-4">
                 <i
-                  class="fab fa-java text-3xl hover:text-java-red transition-colors cursor-pointer"
+                  class="fab fa-java text-3xl hover:text-java-red transition-colors cursor-pointer hover:scale-110 transition-transform duration-200"
                   title="Java"
                 ></i>
                 <i
-                  class="fas fa-leaf text-3xl hover:text-spring-green transition-colors cursor-pointer"
+                  class="fas fa-leaf text-3xl hover:text-spring-green transition-colors cursor-pointer hover:scale-110 transition-transform duration-200"
                   title="Spring Boot"
                 ></i>
                 <i
-                  class="fab fa-docker text-3xl hover:text-docker-blue transition-colors cursor-pointer"
+                  class="fab fa-docker text-3xl hover:text-docker-blue transition-colors cursor-pointer hover:scale-110 transition-transform duration-200"
                   title="Docker"
                 ></i>
                 <i
-                  class="fas fa-database text-3xl hover:text-slate-600 dark:hover:text-slate-200 transition-colors cursor-pointer"
+                  class="fas fa-database text-3xl hover:text-slate-600 dark:hover:text-slate-200 transition-colors cursor-pointer hover:scale-110 transition-transform duration-200"
                   title="SQL"
                 ></i>
               </div>
@@ -347,21 +374,21 @@
                   class="w-3 h-3 rounded-full bg-green-500 group-hover:bg-green-400 transition-colors"
                 ></div>
                 <span class="ml-2 text-xs text-slate-400 font-code"
-                  >TestConfig.java</span
+                  >OrderService.java</span
                 >
               </div>
               <div class="p-6 text-sm font-code text-slate-300 overflow-x-auto">
-                <pre><code><span class="text-purple-400">@Test</span>
-<span class="text-blue-400">void</span> <span class="text-yellow-300">shouldCreateOrderSuccess</span>() {
-    <span class="text-slate-500">// Given</span>
-    OrderDto dto = <span class="text-blue-400">new</span> OrderDto(...);
+                <pre><code><span class="text-purple-400">@Transactional</span>
+<span class="text-blue-400">public</span> OrderDto <span class="text-yellow-300">createOrder</span>(OrderDto dto) {
+    <span class="text-slate-500">// Business Logic</span>
+    var order = repository.save(entity);
     
-    <span class="text-slate-500">// When</span>
-    var result = service.create(dto);
+    <span class="text-slate-500">// Event Driven</span>
+    eventPublisher.publish(
+      <span class="text-blue-400">new</span> OrderCreatedEvent(order)
+    );
 
-    <span class="text-slate-500">// Then</span>
-    <span class="text-blue-400">assertNotNull</span>(result.getId());
-    <span class="text-blue-400">assertEquals</span>(<span class="text-orange-400">CREATED</span>, result.getStatus());
+    <span class="text-blue-400">return</span> mapper.toDto(order);
 }</code></pre>
               </div>
             </div>
@@ -379,7 +406,9 @@
             >
               Sobre Mim
             </h2>
-            <div class="h-1 w-20 bg-blue-600 mx-auto rounded-full"></div>
+            <div
+              class="h-1 w-20 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"
+            ></div>
           </div>
 
           <div
@@ -389,11 +418,11 @@
               class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6"
               data-lang-key="aboutText1"
             >
-              Sou um <strong>Desenvolvedor Back-end</strong> apaixonado por
-              resolver problemas complexos através de código limpo e eficiente.
-              Sou <strong>Graduado em Sistemas de Informação</strong> pela Unit
-              (Concluído em 07/2025), tendo focado minha carreira no ecossistema
-              <strong>Java</strong>.
+              Sou um <strong>Desenvolvedor Back-end</strong> focado no
+              ecossistema <strong>Java & Spring</strong>. Sou
+              <strong>Graduado em Sistemas de Informação</strong> pela Unit e,
+              atualmente, estou cursando
+              <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong>.
             </p>
             <p
               class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
@@ -498,28 +527,7 @@
                   >
                   <span
                     class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >SQLite</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >SQL/MySQL</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >HTML/CSS</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >Git/GitHub</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >Figma</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    title="Utilizado para ambiente de desenvolvimento local"
-                    >WAMP</span
+                    >SQL</span
                   >
                 </div>
               </div>
@@ -567,19 +575,7 @@
                   >
                   <span
                     class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >Redis</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
                     >Node.js</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >API REST</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >Typebot</span
                   >
                 </div>
               </div>
@@ -617,14 +613,6 @@
                     class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
                     >JavaScript</span
                   >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >Figma</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-code rounded text-slate-600 dark:text-slate-300"
-                    >Lucidchart</span
-                  >
                 </div>
               </div>
             </div>
@@ -645,6 +633,9 @@
               >
                 Projetos em Destaque
               </h2>
+              <div
+                class="h-1 w-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-3"
+              ></div>
               <p class="text-slate-500 dark:text-slate-400">
                 Aplicações focadas em escalabilidade e segurança.
               </p>
@@ -663,9 +654,9 @@
           </div>
 
           <div class="grid md:grid-cols-2 gap-8">
-            <!-- Projeto 1: Easy Order API (Padrão de altura e padding uniforme) -->
+            <!-- Projeto 1: Easy Order API -->
             <div
-              class="group bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col p-6"
+              class="group bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col p-6"
             >
               <div class="flex justify-between items-start mb-4">
                 <div
@@ -719,9 +710,9 @@
               </div>
             </div>
 
-            <!-- Projeto 2: SergipePay (Padrão de altura e padding uniforme) -->
+            <!-- Projeto 2: SergipePay -->
             <div
-              class="group bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col p-6"
+              class="group bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col p-6"
             >
               <div class="flex justify-between items-start mb-4">
                 <div
@@ -777,7 +768,6 @@
           </div>
 
           <div class="mt-8 text-center md:hidden">
-            <!-- Botão Ver Todos Padronizado Mobile -->
             <a
               href="https://github.com/V1ct0rSb?tab=repositories"
               target="_blank"
@@ -800,11 +790,10 @@
             Arsenal Tecnológico
           </h2>
 
-          <!-- Grid de Tecnologias -->
           <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
             <!-- Card Java -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 hover:shadow-md transition-all group"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 hover:shadow-md hover:-translate-y-1 transition-all group"
             >
               <i
                 class="fab fa-java text-4xl text-slate-400 group-hover:text-orange-500 mb-3 transition-colors"
@@ -814,7 +803,7 @@
 
             <!-- Card Spring -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-green-500 hover:shadow-md transition-all group"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-green-500 hover:shadow-md hover:-translate-y-1 transition-all group"
             >
               <i
                 class="fas fa-leaf text-4xl text-slate-400 group-hover:text-green-500 mb-3 transition-colors"
@@ -826,18 +815,18 @@
 
             <!-- Card SQL -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-600 hover:shadow-md transition-all group col-span-2 md:col-span-1"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-600 hover:shadow-md hover:-translate-y-1 transition-all group col-span-2 md:col-span-1"
             >
               <i
                 class="fas fa-database text-4xl text-slate-400 group-hover:text-blue-600 mb-3 transition-colors"
               ></i>
               <h3 class="font-bold text-slate-700 dark:text-slate-200">SQL</h3>
-              <p class="text-xs text-slate-500 mt-1">Postgres, MySQL, SQLite</p>
+              <p class="text-xs text-slate-500 mt-1">Postgres, MySQL</p>
             </div>
 
             <!-- Card Testes -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-red-400 hover:shadow-md transition-all group"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-red-400 hover:shadow-md hover:-translate-y-1 transition-all group"
             >
               <i
                 class="fas fa-vial text-4xl text-slate-400 group-hover:text-red-400 mb-3 transition-colors"
@@ -850,7 +839,7 @@
 
             <!-- Card Docker -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-400 hover:shadow-md transition-all group"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-400 hover:shadow-md hover:-translate-y-1 transition-all group"
             >
               <i
                 class="fab fa-docker text-4xl text-slate-400 group-hover:text-blue-400 mb-3 transition-colors"
@@ -862,7 +851,7 @@
 
             <!-- Card Microservices -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-500 hover:shadow-md transition-all group"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-500 hover:shadow-md hover:-translate-y-1 transition-all group"
             >
               <i
                 class="fas fa-network-wired text-4xl text-slate-400 group-hover:text-purple-500 mb-3 transition-colors"
@@ -874,7 +863,7 @@
 
             <!-- Card Git -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:shadow-md transition-all group"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:shadow-md hover:-translate-y-1 transition-all group"
             >
               <i
                 class="fab fa-git-alt text-4xl text-slate-400 group-hover:text-red-500 mb-3 transition-colors"
@@ -884,7 +873,7 @@
 
             <!-- Card Frontend -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-500 hover:shadow-md transition-all group col-span-2 md:col-span-1 lg:col-span-1"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-500 hover:shadow-md hover:-translate-y-1 transition-all group col-span-2 md:col-span-1 lg:col-span-1"
             >
               <div class="flex justify-center gap-2 mb-3">
                 <i
@@ -901,7 +890,7 @@
 
             <!-- Card Inglês -->
             <div
-              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-md transition-all group col-span-2 md:col-span-1 lg:col-span-2"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-md hover:-translate-y-1 transition-all group col-span-2 md:col-span-1 lg:col-span-2"
             >
               <i
                 class="fas fa-language text-4xl text-slate-400 group-hover:text-indigo-500 mb-3 transition-colors"
@@ -935,15 +924,15 @@
               >
               <span
                 class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
-                >Swagger / OpenAPI</span
+                >Swagger</span
               >
               <span
                 class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
-                >Scrum / Agile</span
+                >Scrum</span
               >
               <span
                 class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 shadow-sm"
-                >Insomnia / Postman</span
+                >Insomnia</span
               >
             </div>
           </div>
@@ -963,23 +952,23 @@
             class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
             data-lang-key="contactDesc"
           >
-            Estou disponível para oportunidades como Desenvolvedor Backend
-            Júnior. Se você busca alguém focado em qualidade de código e
-            performance, entre em contato.
+            Estou disponível para oportunidades de <strong>Estágio</strong> ou
+            <strong>Júnior</strong>. Se você busca alguém com base técnica
+            sólida e paixão por qualidade de código, entre em contato.
           </p>
 
           <div
             class="flex flex-col sm:flex-row justify-center items-center gap-6"
           >
-            <!-- Botão de Email Padronizado (H-12) -->
+            <!-- Botão de Email Melhorado com Gradiente -->
             <a
-              href="mailto:denvictor.sbarreto@gmail.com?subject=Oportunidade%20para%20Desenvolvedor%20Backend%20-%20Portfólio%20Victor%20Barreto&body=Olá%20Victor,%0D%0A%0D%0AEscrevo%20para%20discutir%20uma%20oportunidade%20de%20Desenvolvimento%20Backend%20que%20encontrei%20em%20seu%20portfólio.%0D%0A%0D%0A[Insira%20sua%20mensagem%20aqui]%0D%0A%0D%0AAtenciosamente,"
-              class="flex items-center justify-center h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition-transform hover:scale-[1.02] flex items-center gap-2 shadow-lg shadow-blue-900/50"
+              href="mailto:denvictor.sbarreto@gmail.com?subject=Oportunidade%20para%20Desenvolvedor%20Backend%20-%20Portfólio%20Victor%20Barreto"
+              class="flex items-center justify-center h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-transform hover:scale-[1.02] flex items-center gap-2 shadow-lg shadow-blue-900/50"
             >
               <i class="fas fa-envelope"></i>
               <span data-lang-key="btnEmail">Enviar Email</span>
             </a>
-            <!-- Botão LinkedIn Padronizado (H-12) -->
+            <!-- Botão LinkedIn -->
             <a
               href="https://linkedin.com/in/victor-barreto-6a3129258"
               target="_blank"
@@ -1012,12 +1001,13 @@
           navExp: "Experiência",
           navProjects: "Projetos",
           navSkills: "Stack",
+          heroBadge: "Disponível para Estágio e Júnior",
           heroDesc:
             "Especialista em construir <strong>APIs RESTful robustas</strong> e escaláveis com Java e Spring Boot. Focado em arquitetura limpa, microserviços e soluções de alta performance.",
           heroBtnProjects: "Ver Projetos",
           aboutTitle: "Sobre Mim",
           aboutText1:
-            "Sou um <strong>Desenvolvedor Back-end</strong> apaixonado por resolver problemas complexos através de código limpo e eficiente. Sou <strong>Graduado em Sistemas de Informação</strong> pela Unit (Concluído em 07/2025), tendo focado minha carreira no ecossistema <strong>Java</strong>.",
+            "Sou um <strong>Desenvolvedor Back-end</strong> focado no ecossistema <strong>Java & Spring</strong>. Sou <strong>Graduado em Sistemas de Informação</strong> pela Unit e, atualmente, estou cursando <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong>.",
           aboutText2:
             "Minha experiência vai além do código: atuei em projetos reais integrando o polo tecnológico <strong>Porto Digital</strong>, onde desenvolvi soluções para automação fiscal e gestão de eventos. Busco sempre aplicar as melhores práticas como TDD, SOLID e arquitetura de microsserviços.",
           statYears: "Anos de Estudo/Prática",
@@ -1041,7 +1031,7 @@
           otherSkills: "Outras Competências & Ferramentas:",
           contactTitle: "Vamos construir algo juntos?",
           contactDesc:
-            "Estou disponível para oportunidades como Desenvolvedor Backend Júnior. Se você busca alguém focado em qualidade de código e performance, entre em contato.",
+            "Estou disponível para oportunidades de <strong>Estágio</strong> ou <strong>Júnior</strong>. Se você busca alguém com base técnica sólida e paixão por qualidade de código, entre em contato.",
           btnEmail: "Enviar Email",
           footer: "Todos os direitos reservados.",
         },
@@ -1052,12 +1042,13 @@
           navExp: "Experience",
           navProjects: "Projects",
           navSkills: "Stack",
+          heroBadge: "Open to Internships & Junior Roles",
           heroDesc:
             "Specialist in building <strong>robust RESTful APIs</strong> and scalable solutions with Java and Spring Boot. Focused on clean architecture, microservices, and high-performance software.",
           heroBtnProjects: "View Projects",
           aboutTitle: "About Me",
           aboutText1:
-            "I am a <strong>Backend Developer</strong> passionate about solving complex problems through clean and efficient code. <strong>Graduated in Information Systems</strong> from Unit (Completed in 07/2025), focusing my career on the <strong>Java</strong> ecosystem.",
+            "I am a <strong>Backend Developer</strong> focused on the <strong>Java & Spring</strong> ecosystem. I hold a <strong>Bachelor's degree in Information Systems</strong> and am currently enrolled in <strong>Systems Analysis and Development (ADS)</strong>.",
           aboutText2:
             "My experience goes beyond code: I worked on real projects integrating the <strong>Porto Digital</strong> tech hub, developing solutions for fiscal automation and event management.",
           statYears: "Years Study/Practice",
@@ -1081,7 +1072,7 @@
           otherSkills: "Other Skills & Tools:",
           contactTitle: "Let's build something together?",
           contactDesc:
-            "I am available for Junior Backend Developer opportunities. If you are looking for someone focused on code quality and performance, get in touch.",
+            "I am available for <strong>Internship</strong> or <strong>Junior</strong> opportunities. If you are looking for someone with a solid technical foundation and passion for code quality, get in touch.",
           btnEmail: "Send Email",
           footer: "All rights reserved.",
         },
